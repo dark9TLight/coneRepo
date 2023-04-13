@@ -296,11 +296,13 @@
 
 					targets.table.push( object );
 
+
 				}
 
 				// sphere
 
 				const vector = new THREE.Vector3();
+				const coneVector = new THREE.Vector3();
 
 				for ( let i = 0, l = objects.length; i < l; i ++ ) {
 
@@ -328,7 +330,8 @@
 
 					const object = new THREE.Object3D();
 
-					object.position.setFromCylindricalCoords( 900, theta, y );
+					object.position.setFromCylindricalCoords( 1000, theta, y );
+					
 
 					vector.x = object.position.x * 2;
 					vector.y = object.position.y;
@@ -341,26 +344,32 @@
 				}
 
 				// cone
+
+
 				for ( let i = 0, l = objects.length; i < l; i ++ ) {
 
-					const y = - ( i * 14 ) + 450;
-					const theta = i * ( ( 4 + Math.PI ) );
+				    const y = - ( i * 3 ) + 450;
+					const z = i * 2 - 400;
+					const x = - (i * 12);
+					const theta = i * (0.70) + (Math.PI);
+					
+					//const theta = (i/10.7) * ( ( 4 + Math.PI ) );
 					
 					const object = new THREE.Object3D();
                     
-					object.position.setFromCylindricalCoords( ( i / l ) * 720, theta, y );
-						
+					 object.position.setFromCylindricalCoords( (i/l) * 720, y, x);
+					 
+                   
+					 //coneVector.rotation.y = Math.PI / 2;
+					coneVector.x = object.position.x * 2;
+					coneVector.y = object.position.y;
+					coneVector.z = object.position.z * 2;			
 
-					vector.x = object.position.x * 2;
-					vector.y = object.position.y;
-					vector.z = object.position.z * 2;
 
-					object.lookAt( vector );
+					object.lookAt( coneVector );
 
 					targets.cone.push( object );
-					
 				}
-
 				// grid
 
 				for ( let i = 0; i < objects.length; i ++ ) {
